@@ -19,7 +19,7 @@ API do Projeto FIAP.DELIVERY - Aplicação de delivery mobile
 - [Apagar Produtos](#apagar-produto)
 - [Atualizar Produtos](#atualizar-produto)
 
-#### Listar Produtos
+### Listar Produtos
 
 `GET` /products
 
