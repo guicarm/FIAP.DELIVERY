@@ -13,15 +13,15 @@ API do Projeto FIAP.DELIVERY - Aplicação de delivery mobile
 
 ### Endpoints
 
-- Home
-- Product
-- Cart
-- Checkout
-- Login / Signin
+- [Listar Produtos](#listar-produtos)
+- [Cadastrar Produtos](#cadastrar-produtos)
+- [Detalhar Produtos](#detalhar-produto)
+- [Apagar Produtos](#apagar-produto)
+- [Atualizar Produtos](#atualizar-produto)
 
-#### Home
+#### Listar Produtos
 
-`GET` /home
+`GET` /products
 
 Retorna uma série de produtos sugeridos ao usuário
 
