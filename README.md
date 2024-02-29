@@ -22,7 +22,7 @@ API do Projeto FIAP.DELIVERY - Aplicação de delivery mobile
 
 ### Listar Produtos
 
-`GET` /products
+`GET` /produto
 
 Retorna uma série de produtos sugeridos ao usuário
 
@@ -47,7 +47,7 @@ Retorna uma série de produtos sugeridos ao usuário
 
 ###  Cadastrar Produtos
 
-`POST` /product
+`POST` /produto
 
 Cadastra um produto com os dados enviados no corpo da requisição
 
@@ -60,7 +60,7 @@ Cadastra um produto com os dados enviados no corpo da requisição
 
 #### Exemplo de Requisição
 ```js
-// POST /product
+// POST /produto
 {
     "nome": "Burguer"
 }
@@ -86,7 +86,7 @@ Cadastra um produto com os dados enviados no corpo da requisição
 
 ### Detalhar Produto
 
-`GET`  /product/`{id}`
+`GET`  /produto/`{id}`
 
 Retorna os detalhes do produto com o `id` informado do path
 
@@ -128,7 +128,7 @@ Apaga a categoria com o `id` informado no path
 
 ### Atualizar Produto
 
-`PUT` /product/`{id}`
+`PUT` /produto/`{id}`
 
 Atualiza os dados do produto com o `id` informado no path, utilizando as informações do corpo da requisição
 
@@ -141,7 +141,7 @@ Atualiza os dados do produto com o `id` informado no path, utilizando as informa
 
 #### Exemplo de Requisição
 ```js
-// PUT /product/1
+// PUT /produto/1
 {
     "nome": "MegaBurguer",
     "icone": "burguer.jpg"
