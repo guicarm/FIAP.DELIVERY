@@ -4,8 +4,8 @@ API do Projeto FIAP.DELIVERY - Aplicação de delivery mobile
 ## Requisitos
 
 - [ ] CRUD de Usuários
-- [ ] CRUD de Pedidos
 - [ ] CRUD de Produtos
+- [ ] Registro de Pedidos
 - [ ] Autenticação
 - [ ] Cardápio
 
