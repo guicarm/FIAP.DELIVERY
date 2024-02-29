@@ -22,7 +22,7 @@ API do Projeto FIAP.DELIVERY - Aplicação de delivery mobile
 
 ### Listar Produtos
 
-`GET` /produtos
+`GET` /produto
 
 Retorna uma série de produtos sugeridos ao usuário
 
