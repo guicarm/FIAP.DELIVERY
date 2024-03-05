@@ -61,7 +61,7 @@ public class ProdutoController {
     }
 
 
-    // ========== GET(Detalhar Produto) ============
+    // ========== DELETE (Excluir Produto) ============
 
 
 
