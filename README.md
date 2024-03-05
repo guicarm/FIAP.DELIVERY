@@ -31,7 +31,7 @@ Retorna uma série de produtos sugeridos ao usuário
 [
     {
         "id": 1,
-        "nome": "Burguer",
+        "titulo": "Burguer",
         "icone": "burguer.jpg"
     }
 ]
@@ -62,7 +62,7 @@ Cadastra um produto com os dados enviados no corpo da requisição
 ```js
 // POST /produto
 {
-    "nome": "Burguer"
+    "titulo": "Burguer"
 }
 ```
 
@@ -70,7 +70,7 @@ Cadastra um produto com os dados enviados no corpo da requisição
 ```js
 {
     "id": 1,
-    "nome": "Burguer",
+    "titulo": "Burguer",
     "icone": "burguer.jpg"
 }
 ```
@@ -95,7 +95,7 @@ Retorna os detalhes do produto com o `id` informado do path
 ```js
 {
     "id": 1,
-    "nome": "Burguer",
+    "titulo": "Burguer",
     "icone": "burguer.jpg"
 }
 ```
@@ -143,7 +143,7 @@ Atualiza os dados do produto com o `id` informado no path, utilizando as informa
 ```js
 // PUT /produto/1
 {
-    "nome": "MegaBurguer",
+    "titulo": "MegaBurguer",
     "icone": "burguer.jpg"
 }
 ```
@@ -152,7 +152,7 @@ Atualiza os dados do produto com o `id` informado no path, utilizando as informa
 ```js
 {
     "id": 1,
-    "nome": "MegaBurguer",
+    "titulo": "MegaBurguer",
     "icone": "burguer.jpg"
 }
 ```
