@@ -7,7 +7,8 @@ import java.util.Random;
 public record Produto(Long id, String titulo, String descricao, String ingrediente, String imagem, double valorProduto) {
 
     public Produto(Long id, String titulo, String descricao, String ingrediente, String imagem, double valorProduto){
-        this.id = Math.abs(new Random().nextLong());
+        var key = (id == null) ?  Math.abs(new Random().nextLong()) : id;
+        this.id = key;
         this.titulo = titulo;
         this.descricao = descricao;
         this.ingrediente = ingrediente;
