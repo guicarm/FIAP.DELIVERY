@@ -1,10 +1,32 @@
 package br.com.fiap.fiapdelivery.model;
 
-import java.util.Random;
-
-// RECORD - Gera objetos imutáveis
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 //TODO List Ingrediente, Blob imagem?
-public record Produto(Long id, String titulo, String descricao, String ingrediente, String imagem, double valorProduto) {
+@Entity
+@Data
+public class Produto{
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String titulo;
+    private String descricao;
+    private String ingrediente;
+    private String imagem;
+    private double valorProduto;
+
+   
+
+}
+
+
+
+
+
+/*Long id, String titulo, String descricao, String ingrediente, String imagem, double valorProduto) {
 
     public Produto(Long id, String titulo, String descricao, String ingrediente, String imagem, double valorProduto){
         var key = (id == null) ?  Math.abs(new Random().nextLong()) : id;
@@ -15,5 +37,4 @@ public record Produto(Long id, String titulo, String descricao, String ingredien
         this.imagem = imagem;
         this.valorProduto = valorProduto;
     }
-   
-}
+   */
