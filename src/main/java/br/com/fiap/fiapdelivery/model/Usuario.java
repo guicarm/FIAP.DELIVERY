@@ -1,5 +1,6 @@
 package br.com.fiap.fiapdelivery.model;
 
+import br.com.fiap.fiapdelivery.validation.TipoUsuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,5 +28,8 @@ public class Usuario {
 
     @NotBlank(message = "{usuario.senha.notblank}")
     private String senha;
+
+    @TipoUsuario
+    private String tipo;
 
 }
