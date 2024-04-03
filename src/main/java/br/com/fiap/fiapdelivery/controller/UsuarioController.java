@@ -5,7 +5,8 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;    
  
 import java.util.List;
- 
+
+import org.springframework.ai.openai.OpenAiChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
  
 import br.com.fiap.fiapdelivery.model.Usuario;
 import br.com.fiap.fiapdelivery.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
  
  
@@ -32,6 +34,9 @@ public class UsuarioController {
  
     @Autowired // Injeção de Dependência
     UsuarioRepository repository;
+    
+    @Autowired
+    OpenAiChatClient gpt;
    
     // ========== GET(Listar Usuarios) ============
     @GetMapping
@@ -43,8 +48,10 @@ public class UsuarioController {
     // ========== POST(Cadastrar Usuario) ============
     @PostMapping
     @ResponseStatus(CREATED)
-    public Usuario create(@RequestBody Usuario usuario){
+    public Usuario create(@RequestBody @Valid Usuario usuario){
         log.info("Usuario Cadastrado {}", usuario);
+        var foto = gpt.call("Sugira um nickname para o usuario " + usuario.getNome());
+        usuario.setNome(nome);
         return repository.save(usuario);
     }
  
