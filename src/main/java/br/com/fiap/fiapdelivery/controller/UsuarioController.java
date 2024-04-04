@@ -6,7 +6,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
  
 import java.util.List;
 
-import org.springframework.ai.openai.OpenAiChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +33,8 @@ public class UsuarioController {
  
     @Autowired // Injeção de Dependência
     UsuarioRepository repository;
-    
-    @Autowired
-    OpenAiChatClient gpt;
-   
+
+
     // ========== GET(Listar Usuarios) ============
     @GetMapping
     public List<Usuario> index(){
@@ -50,8 +47,6 @@ public class UsuarioController {
     @ResponseStatus(CREATED)
     public Usuario create(@RequestBody @Valid Usuario usuario){
         log.info("Usuario Cadastrado {}", usuario);
-        var foto = gpt.call("Sugira um nickname para o usuario " + usuario.getNome());
-        usuario.setNome(nome);
         return repository.save(usuario);
     }
  
