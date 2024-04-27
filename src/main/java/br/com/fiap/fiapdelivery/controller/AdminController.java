@@ -56,7 +56,7 @@ public class AdminController {
     @ResponseStatus(NO_CONTENT)
     public void destroy(@PathVariable Long id){
         verificarSeCategoriaExiste(id);
-        
+
         repository.deleteById(id);
     }
 
@@ -66,15 +66,4 @@ public class AdminController {
             .findById(id)
             .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Produto referente ao id não encontrado."));
     }
-
-    // // ==== PRIVATE METHOD ========
-    // private Optional<Produto> getProdutoById(Long id) {
-    //     var produtoEncontrado =
-    //         repository
-    //             .stream()
-    //             .filter(p -> p.id().equals(id))
-    //             .findFirst();
-
-    //     return produtoEncontrado;
-    // }
 }

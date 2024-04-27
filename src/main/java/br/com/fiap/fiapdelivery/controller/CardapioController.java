@@ -28,7 +28,7 @@ public class CardapioController {
         return repository.findAll();
     }
 
-    // ========== GET (Obter s produto do cardápio via ID) ============
+    // ========== GET (Obter produto do cardápio via ID) ============
     @GetMapping("/{id}")
     public ResponseEntity<Produto> show(@PathVariable Long id){
         return repository
@@ -36,15 +36,4 @@ public class CardapioController {
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
-
-    // // ==== PRIVATE METHOD ========
-    // private Optional<Produto> getProdutoById(Long id) {
-    //     var produtoEncontrado =
-    //         repository
-    //             .stream()
-    //             .filter(p -> p.id().equals(id))
-    //             .findFirst();
-
-    //     return produtoEncontrado;
-    // }
 }
