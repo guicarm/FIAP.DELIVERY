@@ -7,6 +7,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import java.util.List;
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("produto")
 @Slf4j
+@CacheConfig
 public class ProdutoController {
    
  
@@ -34,7 +37,7 @@ public class ProdutoController {
     ProdutoRepository repository;
    
     // ========== GET(Listar Produtos) ============
-    @GetMapping
+    @GetMapping 
     public List<Produto> index(){
         return repository.findAll();
     }
@@ -43,6 +46,7 @@ public class ProdutoController {
     // ========== POST(Cadastrar Produto) ============
     @PostMapping
     @ResponseStatus(CREATED)
+    @CacheEvict(allEntries = true)
     public Produto create(@RequestBody Produto produto){
         log.info("Produto Cadastrado {}", produto);
         return repository.save(produto);
@@ -72,6 +76,7 @@ public class ProdutoController {
     // ========== DELETE (Excluir Produto) ============
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
+    @CacheEvict(allEntries = true)
     public void destroy(@PathVariable Long id){
         log.info("Produto apagado {}.", id);
  
@@ -83,6 +88,7 @@ public class ProdutoController {
  
     // ========== PUT (Atualizar Produto) ============
     @PutMapping({"id"})
+    @CacheEvict(allEntries = true)
     public Produto update(@PathVariable Long id, @RequestBody Produto produto){
         log.info("Atualizando produto {} para {}", id, produto);
  
