@@ -7,6 +7,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
  
 import br.com.fiap.fiapdelivery.model.Usuario;
 import br.com.fiap.fiapdelivery.repository.UsuarioRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
  
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("usuario")
 @Slf4j
+@Tag(name = "Usuários")
 public class UsuarioController {
    
  

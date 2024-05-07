@@ -1,11 +1,11 @@
 package br.com.fiap.fiapdelivery.controller;
  
-import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;    
- 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
- 
+
 import br.com.fiap.fiapdelivery.model.Produto;
 import br.com.fiap.fiapdelivery.repository.ProdutoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
  
  
@@ -30,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("produto")
 @Slf4j
 @CacheConfig
+@Tag(name = "Produtos")
 public class ProdutoController {
    
  
@@ -38,6 +43,10 @@ public class ProdutoController {
    
     // ========== GET(Listar Produtos) ============
     @GetMapping 
+    @Operation(
+        summary = "Listar Produtos",
+        description = "Retorna um array com os produtos do usuário autenticado."
+    )
     public List<Produto> index(){
         return repository.findAll();
     }
@@ -46,6 +55,10 @@ public class ProdutoController {
     // ========== POST(Cadastrar Produto) ============
     @PostMapping
     @ResponseStatus(CREATED)
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Produto criado com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Validação falhou. Verifique o corpo da requisição.")
+    })
     @CacheEvict(allEntries = true)
     public Produto create(@RequestBody Produto produto){
         log.info("Produto Cadastrado {}", produto);
@@ -62,15 +75,6 @@ public class ProdutoController {
                             .findById(id)
                             .map(ResponseEntity::ok)
                             .orElse(ResponseEntity.notFound().build());
- 
-        /*
-         var produtoEncontrado = repository.findById(id);
- 
-        if (produtoEncontrado.isEmpty())
-            return ResponseEntity.notFound().build();
-       
-        return ResponseEntity.ok(produtoEncontrado.get());
-         */
     }
  
     // ========== DELETE (Excluir Produto) ============
