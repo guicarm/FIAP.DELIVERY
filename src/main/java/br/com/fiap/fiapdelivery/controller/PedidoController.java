@@ -6,32 +6,40 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.fiapdelivery.model.Pedido;
 import br.com.fiap.fiapdelivery.model.Produto;
+import br.com.fiap.fiapdelivery.model.Usuario;
 import br.com.fiap.fiapdelivery.repository.PedidoRepository;
+import br.com.fiap.fiapdelivery.repository.UsuarioRepository;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/pedidos")
 public class PedidoController {
     @Autowired
-    PedidoRepository repository;
+    private PedidoRepository pedidoRepository;
 
+    // ========== GET (Obter todos os pedidos do usuário) ============
     @GetMapping
     public List<Pedido> index(){
-        return repository.findAll();
+        return pedidoRepository.findAll();
     }
 
+    /// ========== POST (Obter todos os pedidos do usuário) ============
     @PostMapping
-    @ResponseStatus(CREATED)
-    public Pedido create(@RequestBody Pedido pedido) {
-        return repository.save(pedido);
+    public Pedido create(@RequestBody Pedido pedido){
+        return pedidoRepository.save(pedido);
     }
 }

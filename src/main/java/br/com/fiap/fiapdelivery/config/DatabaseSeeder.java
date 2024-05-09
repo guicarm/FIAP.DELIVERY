@@ -13,11 +13,11 @@ import br.com.fiap.fiapdelivery.repository.CardapioRepository;
 @Configuration
 public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
-    CardapioRepository repository;
+    CardapioRepository cardapioRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        repository.saveAll(
+        cardapioRepository.saveAll(
         List.of(
             Produto.builder()
                 .categoria("hamburguer")
