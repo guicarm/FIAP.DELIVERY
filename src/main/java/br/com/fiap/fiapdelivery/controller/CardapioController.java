@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.fiapdelivery.model.Produto;
 import br.com.fiap.fiapdelivery.repository.CardapioRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/cardapio")
+@Tag(name = "Cardápio")
 public class CardapioController {
     @Autowired
     CardapioRepository repository;
@@ -24,8 +26,7 @@ public class CardapioController {
     @GetMapping
     @Cacheable("cardapio")
     @Operation(
-        summary = "Listar Produtos",
-        description = "Retorna uma array das categorias"
+        summary = "API para listar todos os produtos"
     )
     public List<Produto> index(){
         return repository.findAll();
@@ -33,6 +34,9 @@ public class CardapioController {
 
     // ========== GET (Obter produto do cardápio via ID) ============
     @GetMapping("/{id}")
+    @Operation(
+        summary = "API para listar um produto via id"
+    )
     public ResponseEntity<Produto> show(@PathVariable Long id){
         return repository
             .findById(id)

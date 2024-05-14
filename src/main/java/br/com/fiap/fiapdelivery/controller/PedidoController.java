@@ -9,6 +9,8 @@ import br.com.fiap.fiapdelivery.model.Produto;
 import br.com.fiap.fiapdelivery.model.Usuario;
 import br.com.fiap.fiapdelivery.repository.PedidoRepository;
 import br.com.fiap.fiapdelivery.repository.UsuarioRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -27,18 +29,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/pedidos")
+@Tag(name = "Pedidos")
 public class PedidoController {
     @Autowired
     private PedidoRepository pedidoRepository;
 
     // ========== GET (Obter todos os pedidos do usuário) ============
     @GetMapping
+    @Operation(
+        summary = "API para listar todos pedidos realizados"
+    )
     public List<Pedido> index(){
         return pedidoRepository.findAll();
     }
 
     /// ========== POST (Obter todos os pedidos do usuário) ============
     @PostMapping
+    @Operation(
+        summary = "API para cadastrar um pedido"
+    )
     public Pedido create(@RequestBody Pedido pedido){
         return pedidoRepository.save(pedido);
     }

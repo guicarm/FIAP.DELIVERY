@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.fiapdelivery.model.Usuario;
 import br.com.fiap.fiapdelivery.repository.UsuarioRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -34,19 +35,18 @@ public class UsuarioController {
 
     // ========== GET (Listar Usuarios) ============
     @GetMapping
+    @Operation(
+        summary = "API para listar todos usuários cadastrados"
+    )
     public List<Usuario> index(){
         return repository.findAll();
     }
 
-    // ========== POST (Cadastrar Usuario) ============
-    @PostMapping
-    @ResponseStatus(CREATED)
-    public Usuario create(@RequestBody @Valid Usuario usuario){
-        return repository.save(usuario);
-    }
-
     // ========== GET (Detalhar Usuario) ============
     @GetMapping("/{id}")
+    @Operation(
+        summary = "API para listar um usuário via id"
+    )
     public ResponseEntity<Usuario> show(@PathVariable Long id){
         return repository
             .findById(id)
@@ -54,9 +54,22 @@ public class UsuarioController {
             .orElse(ResponseEntity.notFound().build());
     }
 
+    // ========== POST (Cadastrar Usuario) ============
+    @PostMapping
+    @ResponseStatus(CREATED)
+    @Operation(
+        summary = "API para cadastrar um usuário"
+    )
+    public Usuario create(@RequestBody @Valid Usuario usuario){
+        return repository.save(usuario);
+    }
+
     // ========== DELETE (Excluir Usuario) ============
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
+    @Operation(
+        summary = "API para excluir um usuário"
+    )
     public void destroy(@PathVariable Long id){
         verificarSeUsuarioExiste(id);
         repository.deleteById(id);
@@ -64,6 +77,9 @@ public class UsuarioController {
 
     // ========== PUT (Atualizar Usuario) ============
     @PutMapping("/{id}")
+    @Operation(
+        summary = "API para atualizar um usuário"
+    )
     public Usuario update(@PathVariable Long id, @RequestBody Usuario usuario){
         verificarSeUsuarioExiste(id);
         usuario.setId(id);
